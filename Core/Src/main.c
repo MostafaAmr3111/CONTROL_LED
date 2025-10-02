@@ -100,8 +100,10 @@ int main(void)
 	      HAL_Delay(20);  // small delay (debounce)
 	      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_14)) //if (same state)
 	      {
+			  while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_14)); //wait until release
+			  
 	          HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); //toggle LED
-	          while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_14)); //wait until release
+	          
 	          HAL_Delay(20);
 	      }
 	  }
@@ -218,3 +220,4 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+
